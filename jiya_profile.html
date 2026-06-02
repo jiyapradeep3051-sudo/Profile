@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jiya P — Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: #141414;
+      --accent: #c8f250;
+      --accent2: #7ef5c2;
+      --text: #f0f0f0;
+      --muted: #888;
+      --border: #222;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+
+    /* Subtle background grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,242,80,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,242,80,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      width: 100%;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header */
+    .header {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 48px 36px;
+      background: var(--card);
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(200,242,80,0.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #0d0d0d;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .subtitle {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    /* Cards grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 28px 24px;
+      transition: border-color 0.25s, transform 0.2s;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .card.full {
+      grid-column: 1 / -1;
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .card-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .card-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .card-text strong {
+      color: var(--accent2);
+      font-weight: 500;
+    }
+
+    /* Skills pills */
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      background: #1c1c1c;
+      border: 1px solid #333;
+      color: var(--text);
+      font-size: 0.82rem;
+      padding: 5px 14px;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Contact card */
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.9s ease both;
+      transition: border-color 0.25s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent2);
+    }
+
+    .contact-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .contact-items {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-item .ci-icon {
+      font-size: 1.1rem;
+    }
+
+    .contact-item a,
+    .contact-item span {
+      font-size: 0.93rem;
+      color: var(--accent2);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .cta {
+      background: var(--accent);
+      color: #0d0d0d;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .cta:hover { opacity: 0.85; transform: scale(1.03); }
+
+    /* Stagger animation delays */
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.18s; }
+    .card:nth-child(3) { animation-delay: 0.26s; }
+    .card:nth-child(4) { animation-delay: 0.34s; }
+
+    @media (max-width: 520px) {
+      .grid { grid-template-columns: 1fr; }
+      .header { padding: 32px 28px; }
+      .contact-card { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- Heading -->
+    <div class="header">
+      <div class="tag">Profile</div>
+      <h1>Jiya <span>P</span></h1>
+      <p class="subtitle">Data Enthusiast &nbsp;·&nbsp; BCA 3rd Year &nbsp;·&nbsp; IIT Palakkad Intern</p>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <div class="card-label">Education</div>
+        <div class="card-text">
+          <strong>BCA 3rd Year student</strong> with hands-on skills in Python, Excel, and SQL.
+        </div>
+        <div class="pills">
+          <span class="pill">Python</span>
+          <span class="pill">Excel</span>
+          <span class="pill">SQL</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <div class="card-label">Experience</div>
+        <div class="card-text">
+          Completed online courses from <strong>IIT Bombay</strong> and currently interning at <strong>IIT Palakkad</strong>.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔗</div>
+        <div class="card-label">LinkedIn Presence</div>
+        <div class="card-text">
+          Maintains a strong LinkedIn presence with a <strong>decent following</strong>, sharing insights on data and programming.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <div class="card-label">Looking For</div>
+        <div class="card-text">
+          Actively seeking opportunities in <strong>Data Analytics</strong> and <strong>Programming</strong> roles.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-card">
+      <div>
+        <div class="contact-label">Get in Touch</div>
+        <div class="contact-items">
+          <div class="contact-item">
+            <span class="ci-icon">📞</span>
+            <span>123984</span>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon">💼</span>
+            <a href="https://www.linkedin.com/in/jiya" target="_blank">linkedin.com/in/jiya</a>
+          </div>
+        </div>
+      </div>
+      <button class="cta" onclick="window.open('https://www.linkedin.com/in/jiya','_blank')">Connect on LinkedIn ↗</button>
+    </div>
+
+  </div>
+</body>
+</html>
